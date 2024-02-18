@@ -65,3 +65,5 @@ function start(): void {
     getFormValuesAndDisplayResults();
   });
 }
+
+start();
