@@ -1,6 +1,6 @@
 "use strict";
 
-import { IForm, IResult } from "./interface";
+import { IForm, IResult } from "./interface.js";
 
 // Find DOM element once rather than finding each time on use.
 const calcForm: HTMLFormElement = document.querySelector("#calc-form")!;
@@ -27,7 +27,7 @@ function getFormValues(): IForm {
 
 /** Calculate monthly payment and return. */
 
-function calcMonthlyPayment({ amount, years, rate }) {
+function calcMonthlyPayment({ amount, years, rate }: IForm ): number {
   const monthsInYear = 12;
   const monthlyRate = (rate / 100) / monthsInYear;
   const n = Math.floor(years * monthsInYear);
@@ -39,16 +39,16 @@ function calcMonthlyPayment({ amount, years, rate }) {
 
 /** Get form values, calculate, format to 2 decimal places, and display. */
 
-function getFormValuesAndDisplayResults() {
+function getFormValuesAndDisplayResults(): void {
   const { amount, years, rate } = getFormValues();
-  const payment = calcMonthlyPayment({ amount, years, rate });
+  const payment: number = calcMonthlyPayment({ amount, years, rate });
   resultHistory.push({ amount, years, rate, payment });
   resultArea.innerText = "$" + payment.toFixed(2);
 }
 
 /** Set initial form values and show initial results. Called at app start. */
 
-function setInitialValues() {
+function setInitialValues(): void {
   amountInput.value = "10000";
   yearsInput.value = "10";
   rateInput.value = "4.5";
@@ -57,10 +57,10 @@ function setInitialValues() {
 
 /** Start: set form defaults & display; attach form submit event listener. */
 
-function start() {
+function start(): void {
   setInitialValues();
 
-  calcForm.addEventListener("submit", function (evt) {
+  calcForm.addEventListener("submit", function (evt: SubmitEvent) {
     evt.preventDefault();
     getFormValuesAndDisplayResults();
   });
