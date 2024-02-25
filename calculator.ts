@@ -1,12 +1,14 @@
 "use strict";
 // Find DOM element once rather than finding each time on use.
-const calcForm = document.getElementById("calc-form");
-const amountInput = document.getElementById("loan-amount");
-const yearsInput = document.getElementById("loan-years");
-const rateInput = document.getElementById("loan-rate");
-const resultArea = document.getElementById("calc-monthly-payment");
+const calcForm = document.getElementById("calc-form") as HTMLFormElement;
+const amountInput = document.getElementById("loan-amount") as HTMLInputElement;
+const yearsInput = document.getElementById("loan-years") as HTMLInputElement;
+const rateInput = document.getElementById("loan-rate") as HTMLInputElement;
+const resultArea = document.getElementById("calc-monthly-payment") as HTMLSpanElement;
 
-const resultHistory = [];
+import { Result } from "./interface";
+
+const resultHistory: Result[] = [];
 
 /** Retrieve form values.
  *
